@@ -1,9 +1,12 @@
-import express, { Application, Request, Response } from 'express';
-import { ErrorHandler } from './helpers/ErrorHandler.helper';
+import express, { Application, NextFunction, Request, Response } from 'express';
+import { ErrorHandler, throwError } from './helpers/ErrorHandler.helper';
 import * as dotenv from 'dotenv';
 import cors from 'cors';
 import router from './routes/index';
 import cookieParser from 'cookie-parser';
+import swaggerUi from "swagger-ui-express";
+import swaggerSpec from './utils/swagger';
+
 
 dotenv.config();
 const app: Application = express();
@@ -21,14 +24,26 @@ app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
 //     next();
 // });
 
-app.use('/api/v1', router)
+app.use(`${process.env.BASE_ROUTE}`, router)
 
 
-app.get('/', (_: Request, res: Response) => {
-    res.send('Hello World!');
+// Swagger page
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
+// Docs in JSON format
+app.get("/docs.json", (req: Request, res: Response) => {
+    res.setHeader("Content-Type", "application/json");
+    res.send(swaggerSpec);
 });
 
 app.use(ErrorHandler);
+
+app.use('*', (req: Request, res: Response, next: NextFunction) => {
+    res.status(404).send({ message: "Route not found" })
+});
+
+
+console.info(`Docs available at http://localhost:${PORT}/docs`);
 
 app.listen(PORT, () => {
     console.log(`App listening at: ${PORT}`);

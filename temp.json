@@ -1,0 +1,21 @@
+{
+    "blockNum": "0xb15722",
+    "uniqueId": "0xfa89c221750578e89a4aefad948a1dc26e0de92878e3043f7a916c678f885957:log:214",
+    "hash": "0xfa89c221750578e89a4aefad948a1dc26e0de92878e3043f7a916c678f885957",
+    "from": "0xd24ff5e32de12be154b1c2ee7b731cbc45540e50",
+    "to": "0xa5407eae9ba41422680e2e00537571bcc53efbfd",
+    "value": 20035,
+    "erc721TokenId": null,
+    "erc1155Metadata": null,
+    "tokenId": null,
+    "asset": "USDC",
+    "category": "erc20",
+    "rawContract": {
+        "value": "0x04aa2dd6c0",
+        "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
+        "decimal": "0x6"
+    },
+    "metadata": {
+        "blockTimestamp": "2021-01-09T18:25:33.000Z"
+    }
+}
