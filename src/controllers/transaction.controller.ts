@@ -6,7 +6,7 @@ import { getLatestTransaction } from "../services/transaction.service";
 
 
 
-export const getLatestTransactionController = asyncWrap(async (req: Request<LatestTransactionInput>, res: Response, next: NextFunction) => {
+export const getLatestTransactionController = async (req: Request<LatestTransactionInput>, res: Response, next: NextFunction) => {
     const { contractAddress, walletAddress } = req.params
     try {
         const LatestTransaction = await getLatestTransaction(contractAddress, walletAddress)
@@ -16,7 +16,7 @@ export const getLatestTransactionController = asyncWrap(async (req: Request<Late
         throwError(error.statusCode, `Error in Latest Txns: ${error.message}`)
     }
 
-})
+}
 
 export const getMaxTransactionController = asyncWrap(async (req: Request<{}, {}, MaxTransactionInput>, res: Response, next: NextFunction) => {
     const { contractAddress, walletAddress } = req.body
