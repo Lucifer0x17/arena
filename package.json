@@ -4,7 +4,6 @@
   "description": "typescript node.js express.js zod boilerplate",
   "main": "server.ts",
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
     "dev": "ts-node-dev --respawn --transpile-only src/server.ts --files",
     "start": "node ./dist/server",
     "build": "tsc && cp -f ./src/config/config.env ./dist/config",
